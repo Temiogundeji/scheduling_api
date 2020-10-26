@@ -21,7 +21,6 @@ const  registerPatient = (req, res) => {
         //     });
         // }
         const hashed = generateHash(10, pwd);
-        // if(checkIfPatientExist(email) === 0){
             pool.query('INSERT INTO patients ("patient_fname", "patient_lname", "email", "pwd", "frequent_ailment") VALUES ($1, $2, $3, $4, $5)', 
             [p_fname, p_lname, email, hashed, frequent_ailment],
             (error) => {
@@ -34,7 +33,6 @@ const  registerPatient = (req, res) => {
             });
         }
         );
-    // }
 }
 
 // const registerPatient = (req, res) => {
