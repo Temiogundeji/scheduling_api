@@ -1,6 +1,8 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
+require('dotenv').config();
+
 //generatePassword:: generate hashed password
 const generateHash = (plainPassword) => {
    const salt = bcrypt.genSaltSync();
@@ -27,7 +29,7 @@ const checkIfUserExist = (userArr, userEmail) => {
     }
 
 }
-
+ 
 //isValidEmail:: to check if user email is valid
 const isValidEmail = (email) => {
     return /\S+@\S+\.\S+/.test(email);
@@ -36,11 +38,13 @@ const isValidEmail = (email) => {
 
 //generateToken:: To generate token when user logs in
 const generateToken = (id) => {
-    const token = jwt.sign({ userId, id}, 
+    const token = jwt.sign({ userId: id}, 
         process.env.SECRET, { expiresIn: '7d'}
     );
     return token;
 }
 
+// let token = generateToken(12);
+// console.log(token);
 
-module.exports = { generateHash, comparePassword, checkIfUserExist, isValidEmail, generateToken};
+module.exports = { generateHash, comparePassword, checkIfUserExist, isValidEmail, generateToken };
