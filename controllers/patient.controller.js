@@ -33,8 +33,8 @@ const patientControllers = {
             });
         }
         const text = `INSERT INTO 
-                patients ("patient_fname", "patient_lname", "email", "pwd", "genotype", "blood_group", "frequent_ailment", created_date, modified_date)
-                VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
+                patients ("patient_fname", "patient_lname", "email", "pwd", "patient_img", "genotype", "blood_group", "frequent_ailment", created_date, modified_date)
+                VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
                 returning *`;
 
         const values = [
@@ -42,6 +42,7 @@ const patientControllers = {
             req.body.p_lname,
             req.body.email,
             hashedPassword,
+            req.body.p_img,
             req.body.genotype,
             req.body.blood_group,
             req.body.frequent_ailment,
@@ -52,7 +53,7 @@ const patientControllers = {
         try{
             const { rows } = await model.query(text, values);
             const token = generateToken(rows[0].id);
-            console.log(token);
+            // console.log(token);
             res.status(201).send({
                 data: rows[0],
                 token: token
@@ -117,7 +118,7 @@ const patientControllers = {
         const text = `SELECT * FROM patients WHERE id = $1`;
         const values = [req.params.id];
 
-        try {
+        try{
             const {rows} = await model.query(text, values);
             res.status(200).send(rows);
         }

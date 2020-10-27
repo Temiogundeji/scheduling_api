@@ -36,6 +36,9 @@ const isValidEmail = (email) => {
 }
 
 
+//getPMEquivalent:: get the PM equivalent of the date
+
+
 //generateToken:: To generate token when user logs in
 const generateToken = (id) => {
     const token = jwt.sign({ userId: id}, 
