@@ -1,9 +1,9 @@
-// const app = require('../app');
-// const {getSinglePatient, getAllPatients} = require('../services/patient.service');
+const app = require('../app');
 
-// // app.get('/patients', getAllPatients);
-// // app.get('/patient/:id', getSinglePatient);
+const patientController = require('../controllers/patient.controller');
 
-// app
-//     .route('/patients')
-//     .get(getAllPatients)
+// // Patient's:: Endpoints for patient
+// app.post('/api/v1/patients', patientController.registerPatient);
+// app.post('/api/v1/patient/login', patientController.login);
+// app.get('/api/v1/patients', Auth.verifyPatientToken, patientController.getAllPatients);
+// app.get('/api/v1/patient/:id', Auth.verifyPatientToken, patientController.getOnePatient);
