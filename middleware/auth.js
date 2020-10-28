@@ -22,10 +22,15 @@ const Auth = {
             }
 
             req.patient = { id: decoded.userId };
+            
             next();
         }
         catch(err){
             return res.status(400).send(err);
+        }
+
+        return {
+            id: req.patient.id
         }
     },
 
