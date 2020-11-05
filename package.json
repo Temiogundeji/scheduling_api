@@ -17,6 +17,11 @@
     "nodemon": "^2.0.6",
     "pg": "^8.4.1"
   },
+  "engines": {
+    "node": "12.19.0",
+    "npm": "5.3.0"
+  },
+  "heroku-postbuild": "npm install --production",
   "devDependencies": {},
   "scripts": {
     "start": "node app.js",

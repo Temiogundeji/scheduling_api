@@ -46,6 +46,22 @@ const appointmentControllers = {
         }
     },
 
+    //TODO --> getAppointmentsByPatientID:: get appointments by patient ID
+    getAppointmentsByPatientID: async (req, res) => {
+        let values = [req.params.id];
+        const getAppointmentsQuery = `SELECT * FROM appointments WHERE patient_id = $1`;
+        
+        try {
+            const { rows, rowCount } = await models.query(getAppointmentsQuery, values);
+            res.status(200).send({
+                data: rows,
+                numOfAppointments: `You have booked ${rowCount} appointments`
+            });
+        }
+        catch(err){
+            console.log(err);
+        }
+    },
     //TODO --> checkIfAppointmentExist:: check if appointment exist at a specific time
     //TODO --> terminateAppointment:: terminate an appointment with a specific patient
     //TODO --> getAllAppointment:: get all appointments

@@ -91,7 +91,7 @@ CREATE TABLE IF NOT EXISTS doctors (
     img varchar(120) NOT NULL,
     start_time timestamp NOT NULL,
     end_time timestamp NOT NULL,
-    role_id,
+    role_id integer NOT NULL,
     created_date timestamp NOT NULL,
     modified_date timestamp NOT NULL
 );

@@ -50,13 +50,15 @@ const patientControllers = {
             moment(new Date())
         ];
 
-        try{
+        try {
             const { rows } = await model.query(text, values);
             const token = generateToken(rows[0].id);
             // console.log(token);
             res.status(201).send({
                 data: rows[0],
-                token: token
+                token: token,
+                message:`${rows[0].p_fname} has been registered successfully`,
+                status: 'success'
             });
         }
         catch(err){
@@ -89,6 +91,7 @@ const patientControllers = {
               return res.status(200).send({ 
                 message: `Welcome ${rows[0].patient_fname}`,
                 data: rows[0],
+                status: 'success',
                 token,
             });
         }

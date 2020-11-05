@@ -7,6 +7,7 @@ const doctorController = require('./controllers/doctor.controller');
 const appointmentController = require('./controllers/appointment.controller');
 
 const Auth = require('./middleware/auth');
+const appointmentControllers = require('./controllers/appointment.controller');
 
 const app = express();
 
@@ -14,7 +15,13 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.use(cors());
+const isProduction = process.env.NODE_ENV === 'production'
+const origin = {
+    origin: isProduction ? 'https://www.example.com' : '*',
+}
+
+app.use(cors(origin));
+
 
 app.get('/', (req, res) => {
     return res.status(200).send({ message: 'welcome Dev! you\'ve come a long way in a very short time..' });
@@ -34,7 +41,7 @@ app.get('/api/v1/patient/:id', Auth.verifyPatientToken, patientController.getOne
 
 //Appointment's:: Endpoints for appointment
 app.post('/api/v1/appointments', Auth.verifyPatientToken, appointmentController.scheduleAppointment);
-
+app.get('/api/v1/appointments/:id', Auth.verifyPatientToken, appointmentControllers.getAppointmentsByPatientID);
 app.listen(process.env.PORT || 3000, () => console.log('Server listening at 3000'));
 
 
