@@ -1,10 +1,34 @@
 const moment = require('moment');
 const model = require('../models');
+const multer = require('multer');
 
 require('dotenv').config();
 
 const { generateHash, isValidEmail, generateToken, comparePassword } = require('../utils');
 
+const storage = multer.diskStorage({
+    destination: function(req, file, cb){
+        cb(null, 'uploads/')
+    },
+    filename: function (req, file, cb){
+        cb(null, file.originalname);
+    }
+});
+
+const fileFilter = (req, file, cb) => {
+    if(file.mimetype === 'image/jpeg' || file.mimetype === 'image/png'){
+        cb(null, true);
+    }
+    cb(null, false);
+}
+
+const upload =  multer({
+    storage: storage, 
+    fileFilter: fileFilter,
+    limits: {
+        fileSize: 1024 * 1024 * 5
+    }
+});
 
 
 const doctorControllers = {
@@ -13,7 +37,7 @@ const doctorControllers = {
             return res.status(400).send({
                 message: 'Some values are missing'
             });
-        }
+        } 
 
         if(!isValidEmail(req.body.email)){
             return res.status(400).send({
@@ -57,11 +81,16 @@ const doctorControllers = {
             console.log(token);
             res.status(201).send({
                 data: rows[0],
-                token: token
+                message: `Welcome Doctor ${rows[0].doctor_fname}`,
+                status: 'success',
+                token: token,
             });
         }
         catch(err){
-            res.status(400).send(err);
+            res.status(400).send({
+               message: err,
+               status: 'failed'
+            });
         }
     },
 
@@ -89,6 +118,7 @@ const doctorControllers = {
               return res.status(200).send({ 
                 message: `Welcome ${rows[0].doctor_fname}`,
                 data: rows[0],
+                status: 'success',
                 token,
             });
         }
@@ -125,10 +155,7 @@ const doctorControllers = {
         }
     }, 
 
-    getDoctorsByTimeRange: async (req, res) => {
-        
-    }
-
+    getDoctorsByTimeRange: async (req, res) => {}
 };
 
 module.exports = doctorControllers;

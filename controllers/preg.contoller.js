@@ -5,10 +5,10 @@ require('dotenv').config();
 
 const { generateHash, isValidEmail, generateToken, comparePassword } = require('../utils');
 
-const patientControllers = {
-    registerPatient : async(req, res) =>{
+const pregControllers = {
+    registerPreg : async(req, res) =>{
 
-        if(!req.body.p_fname || !req.body.p_lname || !req.body.email || !req.body.p_img || !req.body.pwd || !req.body.genotype || !req.body.blood_group || !req.body.frequent_ailment ){
+        if(!req.body.p_fname || !req.body.p_lname || !req.body.email || !req.body.pwd || !req.body.p_img || !req.body.genotype || !req.body.blood_group || !req.body.frequent_ailment || !req.body.pweight || !req.body.height || !req.body.preg_age ){
             return res.status(400).send({
                 message: 'Some values are missing'
             });
@@ -20,7 +20,7 @@ const patientControllers = {
             });
         }
 
-        const userCheckText = `SELECT * FROM patients WHERE email = $1`;
+        const userCheckText = `SELECT * FROM preg WHERE email = $1`;
         const hashedPassword = generateHash(req.body.pwd);
 
         const userCheckVal = [req.body.email];
@@ -33,8 +33,8 @@ const patientControllers = {
             });
         }
         const text = `INSERT INTO 
-                patients ("patient_fname", "patient_lname", "email", "pwd", "patient_img", "genotype", "blood_group", "frequent_ailment", created_date, modified_date)
-                VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
+                preg ("patient_fname", "patient_lname", "email", "pwd", "patient_img", "genotype", "blood_group", "frequent_ailment", "address", "pweight", "height", "preg_age", edt, pvc_test_result, sugar_level_test, hiv_test_result, created_date, modified_date)
+                VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18)
                 returning *`;
 
         const values = [
@@ -46,6 +46,14 @@ const patientControllers = {
             req.body.genotype,
             req.body.blood_group,
             req.body.frequent_ailment,
+            req.body.address,
+            req.body.pweight,
+            req.body.height,
+            req.body.preg_age,
+            req.body.edt,
+            req.body.pvc_test_result,
+            req.body.sugar_level_test,
+            req.body.hiv_test_result,
             moment(new Date()),
             moment(new Date())
         ];
@@ -53,7 +61,6 @@ const patientControllers = {
         try {
             const { rows } = await model.query(text, values);
             const token = generateToken(rows[0].id);
-            // console.log(token);
             return res.status(201).send({
                 data: rows[0],
                 token: token,
@@ -63,14 +70,14 @@ const patientControllers = {
         }
         catch(err){
             return  res.status(400).send({
-                message: `Opps! The server has encountered a temporary error ${err}`
+                message: `Opps! The server has encountered a temporary ${err}`
             });
             // console.log(err);
         }
 
 
     },
-    login: async (req, res) => {
+    pregLogin: async (req, res) => {
         if(!req.body.email || !req.body.pwd){
             return res.status(400).send({'message': 'Incomplete user login parameter'});
         }
@@ -79,7 +86,7 @@ const patientControllers = {
             return res.status(400).send({ 'message': 'Please enter a valid email address' });
         }
 
-        const text = `SELECT * FROM patients WHERE email = $1`;
+        const text = `SELECT * FROM preg WHERE email = $1`;
         try {
             const { rows } = await model.query(text, [req.body.email]);
             if(!rows[0]){
@@ -113,8 +120,23 @@ const patientControllers = {
             const { rows, rowCount } = await model.query(text, values);
             res.status(200).send({
                 data: rows,
+                rowCount 
+            });
+        }
+        catch(err) {
+            console.log(err);
+        }
+    },
+    getAllPregs: async (req, res) => {
+        const text = `SELECT * FROM preg`;
+        const values = [];
+
+        try {
+            const { rows, rowCount } = await model.query(text, values);
+            res.status(200).send({
+                data: rows,
                 rowCount,
-                status: 'success'
+                status: "success"
             });
         }
         catch(err) {
@@ -192,4 +214,4 @@ const patientControllers = {
     }
 }
 
-module.exports = patientControllers;
+module.exports = pregControllers;

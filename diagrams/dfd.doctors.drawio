@@ -1,0 +1,69 @@
+<mxfile host="65bd71144e" modified="2020-11-19T15:10:13.834Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.51.1 Chrome/83.0.4103.122 Electron/9.3.3 Safari/537.36" version="13.6.5" etag="aLpEFvlaPFcXHAeQZbUC">
+    <diagram id="moS_l5OCdeUVxUtvwmRX" name="Page-1">
+        <mxGraphModel dx="1032" dy="478" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="6" value="" style="endArrow=classic;html=1;fontStyle=4" edge="1" parent="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="880" y="390.4878048780488" as="sourcePoint"/>
+                        <mxPoint x="880" y="409.5121951219512" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="7" value="" style="endArrow=classic;html=1;fontStyle=4" edge="1" parent="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="880" y="390.4878048780488" as="sourcePoint"/>
+                        <mxPoint x="880" y="409.5121951219512" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="8" value="" style="group;container=1;fontStyle=4" vertex="1" connectable="0" parent="1">
+                    <mxGeometry x="170" y="30" width="670" height="390" as="geometry">
+                        <mxRectangle x="310" y="160" width="50" height="40" as="alternateBounds"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="9" value="Splash screen" style="whiteSpace=wrap;html=1;aspect=fixed;fontStyle=4" vertex="1" parent="8">
+                    <mxGeometry x="10" y="205" width="85" height="85" as="geometry"/>
+                </mxCell>
+                <mxCell id="10" value="LOGIN" style="whiteSpace=wrap;html=1;fontStyle=4" vertex="1" parent="8">
+                    <mxGeometry x="160" y="105" width="120" height="110" as="geometry"/>
+                </mxCell>
+                <mxCell id="11" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontStyle=4" edge="1" parent="8" source="9" target="10">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="12" value="REGISTER" style="whiteSpace=wrap;html=1;fontStyle=4" vertex="1" parent="8">
+                    <mxGeometry x="160" y="245" width="120" height="110" as="geometry"/>
+                </mxCell>
+                <mxCell id="13" value="Doctor&lt;br&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=4" vertex="1" parent="8">
+                    <mxGeometry x="230" y="55" width="40" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="14" value="" style="shape=partialRectangle;whiteSpace=wrap;html=1;bottom=1;right=1;left=1;top=0;fillColor=none;routingCenterX=-0.5;rotation=-90;fontStyle=4" vertex="1" parent="8">
+                    <mxGeometry x="250" y="175" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="15" value="DASHBOARD" style="whiteSpace=wrap;html=1;aspect=fixed;fontStyle=4" vertex="1" parent="8">
+                    <mxGeometry x="410" y="95" width="140" height="140" as="geometry"/>
+                </mxCell>
+                <mxCell id="16" value="" style="endArrow=classic;html=1;fontStyle=4" edge="1" parent="8">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="340" y="215" as="sourcePoint"/>
+                        <mxPoint x="410" y="175" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="17" value="" style="endArrow=classic;html=1;fontStyle=4" edge="1" parent="8" target="18">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="550" y="145" as="sourcePoint"/>
+                        <mxPoint x="570" y="115" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="18" value="SEND FILES TO PATIENTS" style="whiteSpace=wrap;html=1;aspect=fixed;fontStyle=4" vertex="1" parent="8">
+                    <mxGeometry x="600" y="35" width="80" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="19" value="SET APPOINTMENT" style="whiteSpace=wrap;html=1;aspect=fixed;fontStyle=4" vertex="1" parent="8">
+                    <mxGeometry x="600" y="135" width="80" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="20" value="VIEW PROFILE" style="whiteSpace=wrap;html=1;aspect=fixed;fontStyle=4" vertex="1" parent="8">
+                    <mxGeometry x="600" y="235" width="80" height="80" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
